@@ -3,29 +3,75 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <!--The content below is only a placeholder and can be replaced.-->
-    <div style="text-align:center">
-      <h1>
-        Welcome to {{title}}!
-      </h1>
-      <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+    <h1>Angular Popup</h1>
+
+    <div class="popup" *ngIf="isShow">
+      <h1>Angular Popup</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+      <button class="btn-close" (click)="isShow = !isShow">X</button>
+      <input type="text">
+      <button class="btn-ok">OK</button>
+      <button class="btn-cancel" (click)="isShow = !isShow">Cancel</button>
     </div>
-    <h2>Here are some links to help you start: </h2>
-    <ul>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-      </li>
-    </ul>
-    
+    <div class="overlay" *ngIf="isShow"></div>
+
+    <button class="toggle-popup" (click)="isShow = !isShow">show popup</button>
+
+    <p class="popup-message"></p>
   `,
-  styles: []
+  styles: [`
+    h1 {
+      color: #DB5B33;
+      font-weight: 300;
+      text-align: center;
+    }
+    .is-show {
+      display: block !important;
+    }
+    .popup {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
+      z-index: 2;
+      width: 700px;
+      padding: 15px;
+      background-color: #FFF;
+      -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .5);
+      -moz-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .5);
+      box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .5);
+    }
+    .btn-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      background-color: rgba(0, 0, 0, .3);
+    }
+    .toggle-popup, .btn-ok, .btn-cancel {
+      cursor: pointer;
+    }
+  `]
 })
 export class AppComponent {
-  title = 'popup-ui-angular';
+  isShow = false;
+
+  togglePopup() {
+
+  }
 }
